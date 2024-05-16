@@ -1,14 +1,20 @@
-package main.java.com.example;
+package main.java.com.services;
 
-public class CoreLogin {
-    public void process(Int choice , TodoList todoList, Scanner scanner){
+import main.java.com.models.TodoItemModel;
+import main.java.com.models.TodoListModel;
+
+import java.util.Scanner;
+import java.util.List;
+
+public class DashboardService {
+    public void process(int choice , TodoListModel todoList, Scanner scanner){
         switch (choice) {
             case 1:
               System.out.print("Enter title: ");
               String title = scanner.next();
               System.out.print("Enter completed: ");
               String completed = scanner.next();
-              TodoItem item = new TodoItem(title, completed);
+              TodoItemModel item = new TodoItemModel(title, completed);
               todoList.addItem(item);
               System.out.println("Item added successfully: {title: " + title + ", completed: " + completed + "}");
               break;
@@ -26,17 +32,17 @@ public class CoreLogin {
               System.out.print("Enter completed: ");
               String completedToUpdate = scanner.next();
       
-              TodoItem itemToUpdate = new TodoItem(titleToUpdate, completedToUpdate);
+              TodoItemModel itemToUpdate = new TodoItemModel(titleToUpdate, completedToUpdate);
       
               todoList.updateItem(indexToUpdate, itemToUpdate);
               System.out.println(
                   "Item updated successfully: {title: " + titleToUpdate + ", completed: " + completedToUpdate + "}");
               break;
             case 4:
-              List<TodoItem> items = todoList.getItems();
+              List<TodoItemModel> items = todoList.getItems();
               System.out.println("This is your todo list:");
               for (int i = 0; i < items.size(); i++) {
-                TodoItem currentItem = items.get(i);
+                TodoItemModel currentItem = items.get(i);
                 System.out
                     .println(i + 1 + ". Title: " + currentItem.getTitle() + ", Completed: " + currentItem.getCompleted());
               }
